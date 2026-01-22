@@ -118,6 +118,13 @@ export const Dashboard = () => {
   const getReservasFiltradas = () => {
     let filtered = reservas;
 
+    // Si no hay filtros activos, ocultar las reservas recurrentes para no inundar la lista
+    // El usuario prefiere verlas solo en "Ver Fijas" o buscando específicamente
+    const isGeneralView = !filters.fecha && !filters.cancha_id && !searchTerm && !estadoPagoFilter;
+    if (isGeneralView) {
+      filtered = filtered.filter(r => r.tipo_reserva !== 'recurrente');
+    }
+
     if (searchTerm) {
       filtered = filtered.filter(r => 
         r.cliente_nombre.toLowerCase().includes(searchTerm.toLowerCase())
