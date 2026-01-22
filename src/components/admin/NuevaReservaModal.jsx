@@ -21,7 +21,7 @@ export const NuevaReservaModal = ({ isOpen, onClose, onSuccess }) => {
 
   // Horarios posibles
   const todosLosHorarios = [];
-  for (let hora = 17; hora < 23; hora++) {
+  for (let hora = 17; hora < 24; hora++) {
     todosLosHorarios.push(`${hora.toString().padStart(2, '0')}:00`);
   }
 
@@ -58,9 +58,9 @@ export const NuevaReservaModal = ({ isOpen, onClose, onSuccess }) => {
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prev => ({ 
-      ...prev, 
-      [name]: type === 'checkbox' ? checked : value 
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
     }));
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
@@ -190,8 +190,8 @@ export const NuevaReservaModal = ({ isOpen, onClose, onSuccess }) => {
               >
                 <option value="">Seleccioná horario</option>
                 {todosLosHorarios.map(horario => (
-                  <option 
-                    key={horario} 
+                  <option
+                    key={horario}
                     value={horario}
                     disabled={!horariosDisponibles.includes(horario)}
                   >
@@ -204,8 +204,8 @@ export const NuevaReservaModal = ({ isOpen, onClose, onSuccess }) => {
           </div>
 
           <div className="form-group">
-            <label className="flex items-center gap-sm cursor-pointer" style={{ 
-              padding: 'var(--spacing-sm)', 
+            <label className="flex items-center gap-sm cursor-pointer" style={{
+              padding: 'var(--spacing-sm)',
               background: formData.es_recurrente ? 'var(--color-bg-secondary)' : 'transparent',
               border: formData.es_recurrente ? '1px solid var(--color-primary)' : '1px solid var(--color-border)',
               borderRadius: 'var(--radius-md)',
@@ -219,7 +219,7 @@ export const NuevaReservaModal = ({ isOpen, onClose, onSuccess }) => {
                 style={{ width: '1.2rem', height: '1.2rem' }}
               />
               <span style={{ fontWeight: formData.es_recurrente ? '600' : 'normal' }}>
-                🔄 
+                🔄
                 {formData.es_recurrente && formData.fecha
                   ? ` Se repetirá todos los ${new Date(formData.fecha + 'T12:00:00').toLocaleDateString('es-AR', { weekday: 'long' }).toUpperCase()}`
                   : ' Hacer reserva fija (se repite todas las semanas)'

@@ -35,7 +35,7 @@ export const Booking = () => {
 
   // Horarios disponibles (17:00 a 23:00)
   const horarios = [];
-  for (let hora = 17; hora < 23; hora++) {
+  for (let hora = 17; hora < 24; hora++) {
     horarios.push(`${hora.toString().padStart(2, '0')}:00`);
   }
 
@@ -73,7 +73,7 @@ export const Booking = () => {
     setLoadingDisponibilidad(true);
     try {
       const matrix = {};
-      
+
       // Cargar disponibilidad para cada cancha
       await Promise.all(
         canchas.map(async (cancha) => {
@@ -84,7 +84,7 @@ export const Booking = () => {
           }, {});
         })
       );
-      
+
       setDisponibilidadMatrix(matrix);
     } catch (error) {
       showError('Error al cargar disponibilidad');
@@ -134,7 +134,7 @@ export const Booking = () => {
       });
 
       showSuccess('¡Reserva creada exitosamente!');
-      
+
       setTimeout(() => {
         navigate('/');
       }, 2000);
@@ -146,7 +146,7 @@ export const Booking = () => {
   };
 
   if (loading) {
-    return <LoadingScreen message="Cargando información..."/>;
+    return <LoadingScreen message="Cargando información..." />;
   }
 
   if (canchas.length === 0) {
@@ -168,8 +168,8 @@ export const Booking = () => {
     <div className="container" style={{ paddingTop: 'var(--spacing-2xl)', paddingBottom: 'var(--spacing-2xl)' }}>
       <ToastContainer toasts={toasts} removeToast={removeToast} />
 
-      <Button 
-        variant="outline" 
+      <Button
+        variant="outline"
         onClick={() => navigate('/')}
         style={{ marginBottom: 'var(--spacing-lg)' }}
       >
@@ -358,7 +358,7 @@ export const Booking = () => {
                   <span className="text-secondary">Horario:</span>
                   <strong>{selectedSlot?.horario}</strong>
                 </div>
-                <div className="flex justify-between" style={{ 
+                <div className="flex justify-between" style={{
                   paddingTop: 'var(--spacing-sm)',
                   borderTop: '1px solid var(--color-border)',
                   marginTop: 'var(--spacing-sm)'
@@ -443,8 +443,8 @@ export const Booking = () => {
                   />
                   <div>
                     <strong>Seña (50%)</strong> - {selectedCancha && formatCurrency(selectedCancha.precio_hora * 0.5)}
-                    <div style={{ 
-                      fontSize: 'var(--font-size-sm)', 
+                    <div style={{
+                      fontSize: 'var(--font-size-sm)',
                       color: 'var(--color-text-secondary)',
                       marginTop: 'var(--spacing-xs)'
                     }}>
@@ -464,15 +464,15 @@ export const Booking = () => {
               <p className="text-sm" style={{ marginBottom: 'var(--spacing-xs)' }}>
                 <strong>Monto a pagar ahora:</strong>
               </p>
-              <p style={{ 
+              <p style={{
                 fontSize: 'var(--font-size-2xl)',
                 fontWeight: '700',
                 color: 'var(--color-primary)',
                 marginBottom: 0
               }}>
                 {selectedCancha && formatCurrency(
-                  formData.estado_pago === 'completo' 
-                    ? selectedCancha.precio_hora 
+                  formData.estado_pago === 'completo'
+                    ? selectedCancha.precio_hora
                     : selectedCancha.precio_hora * 0.5
                 )}
               </p>

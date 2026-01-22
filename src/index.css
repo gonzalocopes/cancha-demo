@@ -674,7 +674,29 @@ a:hover {
   .toast {
     min-width: auto;
   }
+
+  /* Mobile Utilities */
+  .mobile-col {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .mobile-w-full {
+    width: 100% !important;
+  }
+
+  .mobile-wrap {
+    flex-wrap: wrap;
+  }
+  
+  .mobile-gap-sm {
+    gap: var(--spacing-sm) !important;
+  }
 }
+
+/* General Utilities */
+.flex-wrap { flex-wrap: wrap; }
+.w-full { width: 100%; }
 
 @media (min-width: 769px) and (max-width: 1024px) {
   .grid-cols-3,

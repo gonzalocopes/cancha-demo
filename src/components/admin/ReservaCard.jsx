@@ -48,7 +48,7 @@ export const ReservaCard = ({ reserva, onUpdatePago, onCancel }) => {
           </div>
           <div className="flex justify-between" style={{ marginBottom: 'var(--spacing-sm)' }}>
             <span className="text-sm text-secondary">WhatsApp:</span>
-            <a 
+            <a
               href={`https://wa.me/${reserva.cliente_whatsapp.replace(/\D/g, '')}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -57,7 +57,7 @@ export const ReservaCard = ({ reserva, onUpdatePago, onCancel }) => {
               {formatPhone(reserva.cliente_whatsapp)} 📱
             </a>
           </div>
-          <div className="flex justify-between" style={{ 
+          <div className="flex justify-between" style={{
             paddingTop: 'var(--spacing-sm)',
             borderTop: '1px solid var(--color-border)',
             marginTop: 'var(--spacing-sm)'
@@ -75,14 +75,15 @@ export const ReservaCard = ({ reserva, onUpdatePago, onCancel }) => {
           </div>
         </div>
 
-        <div className="flex gap-sm">
+        <div className="flex gap-sm mobile-wrap">
           {reserva.estado_pago !== 'completo' && (
             <Button
               variant="secondary"
               size="sm"
               onClick={() => onUpdatePago(reserva.id, 'completo')}
+              className="mobile-w-full"
             >
-              Marcar como Pagado
+              Pagado
             </Button>
           )}
           {reserva.estado_pago === 'pendiente' && (
@@ -90,14 +91,16 @@ export const ReservaCard = ({ reserva, onUpdatePago, onCancel }) => {
               variant="outline"
               size="sm"
               onClick={() => onUpdatePago(reserva.id, 'seña')}
+              className="mobile-w-full"
             >
-              Marcar Seña
+              Seña
             </Button>
           )}
           <Button
             variant="danger"
             size="sm"
             onClick={() => onCancel(reserva.id)}
+            className="mobile-w-full"
           >
             Cancelar
           </Button>
