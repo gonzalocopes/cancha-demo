@@ -75,13 +75,13 @@ export const ReservaCard = ({ reserva, onUpdatePago, onCancel }) => {
           </div>
         </div>
 
-        <div className="flex gap-sm mobile-wrap">
+        <div className="flex gap-sm mobile-grid-2">
           {reserva.estado_pago !== 'completo' && (
             <Button
               variant="secondary"
               size="sm"
               onClick={() => onUpdatePago(reserva.id, 'completo')}
-              className="mobile-w-full"
+              className="w-full"
             >
               Pagado
             </Button>
@@ -91,7 +91,7 @@ export const ReservaCard = ({ reserva, onUpdatePago, onCancel }) => {
               variant="outline"
               size="sm"
               onClick={() => onUpdatePago(reserva.id, 'seña')}
-              className="mobile-w-full"
+              className="w-full"
             >
               Seña
             </Button>
@@ -100,7 +100,7 @@ export const ReservaCard = ({ reserva, onUpdatePago, onCancel }) => {
             variant="danger"
             size="sm"
             onClick={() => onCancel(reserva.id)}
-            className="mobile-w-full"
+            className="w-full mobile-span-2"
           >
             Cancelar
           </Button>

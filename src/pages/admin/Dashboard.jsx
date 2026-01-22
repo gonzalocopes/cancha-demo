@@ -293,86 +293,87 @@ export const Dashboard = () => {
           </div>
 
           <div className="form-group">
-            <div className="form-group">
-              <label className="form-label">💳 Estado de Pago</label>
-              <div style={{ display: 'flex', gap: 'var(--spacing-sm)', flexWrap: 'wrap' }}>
-                <Button
-                  variant={estadoPagoFilter === '' ? 'primary' : 'outline'}
-                  onClick={() => setEstadoPagoFilter('')}
-                  size="sm"
-                  className="mobile-w-full"
-                >
-                  Todos ({reservas.length})
-                </Button>
-                <Button
-                  variant={estadoPagoFilter === 'completo' ? 'primary' : 'outline'}
-                  onClick={() => setEstadoPagoFilter('completo')}
-                  size="sm"
-                  style={{
-                    borderColor: estadoPagoFilter === 'completo' ? 'var(--color-success)' : undefined,
-                    backgroundColor: estadoPagoFilter === 'completo' ? 'var(--color-success)' : undefined
-                  }}
-                >
-                  ✅ Pagado Completo ({stats.pagadas})
-                </Button>
-                <Button
-                  variant={estadoPagoFilter === 'seña' ? 'primary' : 'outline'}
-                  onClick={() => setEstadoPagoFilter('seña')}
-                  size="sm"
-                  style={{
-                    borderColor: estadoPagoFilter === 'seña' ? 'var(--color-warning)' : undefined,
-                    backgroundColor: estadoPagoFilter === 'seña' ? 'var(--color-warning)' : undefined,
-                    color: estadoPagoFilter === 'seña' ? 'var(--color-text-primary)' : undefined
-                  }}
-                >
-                  ⏳ Seña ({stats.pendientes})
-                </Button>
-              </div>
+            <label className="form-label">💳 Estado de Pago</label>
+            <div style={{ display: 'flex', gap: 'var(--spacing-sm)', flexWrap: 'wrap' }} className="mobile-grid-2">
+              <Button
+                variant={estadoPagoFilter === '' ? 'primary' : 'outline'}
+                onClick={() => setEstadoPagoFilter('')}
+                size="sm"
+                className="mobile-span-2 w-full"
+              >
+                Todos ({reservas.length})
+              </Button>
+              <Button
+                variant={estadoPagoFilter === 'completo' ? 'primary' : 'outline'}
+                onClick={() => setEstadoPagoFilter('completo')}
+                size="sm"
+                style={{
+                  borderColor: estadoPagoFilter === 'completo' ? 'var(--color-success)' : undefined,
+                  backgroundColor: estadoPagoFilter === 'completo' ? 'var(--color-success)' : undefined
+                }}
+                className="w-full"
+              >
+                ✅ Pagado ({stats.pagadas})
+              </Button>
+              <Button
+                variant={estadoPagoFilter === 'seña' ? 'primary' : 'outline'}
+                onClick={() => setEstadoPagoFilter('seña')}
+                size="sm"
+                style={{
+                  borderColor: estadoPagoFilter === 'seña' ? 'var(--color-warning)' : undefined,
+                  backgroundColor: estadoPagoFilter === 'seña' ? 'var(--color-warning)' : undefined,
+                  color: estadoPagoFilter === 'seña' ? 'var(--color-text-primary)' : undefined
+                }}
+                className="w-full"
+              >
+                ⏳ Seña ({stats.pendientes})
+              </Button>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 gap-md" style={{
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))'
+          }}>
+            <div className="form-group" style={{ marginBottom: 0 }}>
+              <label className="form-label">📅 Fecha</label>
+              <input
+                type="date"
+                className="form-input"
+                value={filters.fecha}
+                onChange={(e) => setFilters(prev => ({ ...prev, fecha: e.target.value }))}
+              />
             </div>
 
-            <div className="grid grid-cols-1 gap-md" style={{
-              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))'
-            }}>
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label className="form-label">📅 Fecha</label>
-                <input
-                  type="date"
-                  className="form-input"
-                  value={filters.fecha}
-                  onChange={(e) => setFilters(prev => ({ ...prev, fecha: e.target.value }))}
-                />
-              </div>
-
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label className="form-label">🏟️ Cancha</label>
-                <select
-                  className="form-select"
-                  value={filters.cancha_id}
-                  onChange={(e) => setFilters(prev => ({ ...prev, cancha_id: e.target.value }))}
-                >
-                  <option value="">Todas las canchas</option>
-                  {canchas.map(cancha => (
-                    <option key={cancha.id} value={cancha.id}>
-                      {cancha.nombre}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div style={{ display: 'flex', alignItems: 'flex-end' }}>
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    setFilters({ fecha: '', cancha_id: '' });
-                    setSearchTerm('');
-                    setEstadoPagoFilter('');
-                  }}
-                  style={{ width: '100%' }}
-                >
-                  Limpiar Todo
-                </Button>
-              </div>
+            <div className="form-group" style={{ marginBottom: 0 }}>
+              <label className="form-label">🏟️ Cancha</label>
+              <select
+                className="form-select"
+                value={filters.cancha_id}
+                onChange={(e) => setFilters(prev => ({ ...prev, cancha_id: e.target.value }))}
+              >
+                <option value="">Todas las canchas</option>
+                {canchas.map(cancha => (
+                  <option key={cancha.id} value={cancha.id}>
+                    {cancha.nombre}
+                  </option>
+                ))}
+              </select>
             </div>
+
+            <div style={{ display: 'flex', alignItems: 'flex-end' }}>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setFilters({ fecha: '', cancha_id: '' });
+                  setSearchTerm('');
+                  setEstadoPagoFilter('');
+                }}
+                style={{ width: '100%' }}
+              >
+                Limpiar Todo
+              </Button>
+            </div>
+          </div>
         </CardBody>
       </Card>
 
