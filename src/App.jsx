@@ -48,21 +48,22 @@ function AppRoutes() {
         <Route path="/reservar/:id" element={<Booking />} />
 
         {/* Rutas de admin */}
-        <Route 
-          path="/admin/login" 
+        <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
+        <Route
+          path="/admin/login"
           element={
             <PublicRoute>
               <Login />
             </PublicRoute>
-          } 
+          }
         />
-        <Route 
-          path="/admin/dashboard" 
+        <Route
+          path="/admin/dashboard"
           element={
             <ProtectedRoute>
               <Dashboard />
             </ProtectedRoute>
-          } 
+          }
         />
 
         {/* Ruta por defecto */}
