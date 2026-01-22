@@ -91,20 +91,7 @@ export const Login = () => {
             </Button>
           </form>
 
-          <div style={{
-            marginTop: 'var(--spacing-lg)',
-            padding: 'var(--spacing-md)',
-            backgroundColor: 'var(--color-bg-tertiary)',
-            borderRadius: 'var(--radius-md)',
-            fontSize: 'var(--font-size-sm)',
-            textAlign: 'center'
-          }}>
-            <p className="text-secondary" style={{ marginBottom: 0 }}>
-              Credenciales por defecto:<br />
-              Usuario: <strong>admin</strong><br />
-              Contraseña: <strong>admin123</strong>
-            </p>
-          </div>
+
         </CardBody>
       </Card>
     </div>
